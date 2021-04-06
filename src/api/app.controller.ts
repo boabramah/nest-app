@@ -7,7 +7,7 @@ export class AppController {
 
   @Get()
   home(): Promise<string> {
-    const names = ['Ernest', 'Johnny Mensah'];
+    const names = ['Ernest', 'Johnny Mensah', 'Bright Kumah'];
     return this.template.render('home.njk', {names, title:'3 Students'});
   }
 

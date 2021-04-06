@@ -9,11 +9,11 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "incremental": true
   },
   "paths": {
-    "@frontend/*": ["frontend/*"],
-    "@backend/*": ["backend/*"],
+    "@client/*": ["client/*"],
+    "@api/*": ["api/*"],
   }   
 }

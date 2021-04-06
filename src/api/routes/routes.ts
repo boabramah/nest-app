@@ -1,7 +1,7 @@
 import { Routes } from "nest-router";
 import { AppModule } from "../app.module";
-import { AuthModule } from "../api/auth/auth.module";
-import { UserModule } from "../api/user/user.module";
+import { AuthModule } from "../modules/auth/auth.module";
+import { UserModule } from "../modules/user/user.module";
 
 export const routes: Routes = [
     {

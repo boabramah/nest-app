@@ -3,39 +3,51 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const StartServerPlugin = require('start-server-nestjs-webpack-plugin');
 
-const serverConfig = {
-  entry: [ 'webpack/hot/poll?100', './src/backend//main.ts' ],
-  watch: true,
-  target: 'node',
-  externals: [
-    nodeExternals({
-      allowlist: ['webpack/hot/poll?100'],
-    }),
-  ],
-  module: {
-    rules: [
-      {
-        test: /.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },      
+module.exports = (env) => {
+
+  const config = {
+    entry: [ 'webpack/hot/poll?100', './src/api/main.ts' ],
+    target: 'node',
+    externals: [
+      nodeExternals({
+        allowlist: ['webpack/hot/poll?100'],
+      }),
     ],
-  },
-  mode: 'development',
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },    
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.WatchIgnorePlugin({paths: [ 'src/test' ]}),
-    new StartServerPlugin({ name: 'server.js'}),
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'server.js',
-  }, 
+    module: {
+      rules: [
+        {
+          test: /.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },      
+      ],
+    },
+    mode: env.NODE_ENV,
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+    },    
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.WatchIgnorePlugin({paths: [ 'test' ]}),
+      new StartServerPlugin({ name: 'server.js'}),
+    ],
+    output: {
+      path: path.join(__dirname, 'dist/api'),
+      filename: 'server.js',
+    },
+    optimization: {
+      // We do not want to minimize our code.
+      minimize: false
+    },    
+  };
+
+  /*
+    config.plugins = config.plugins.filter((plugin) => {
+      console.log(plugin.constructor.name);
+      return plugin.constructor.name !== 'UglifyJsPlugin';
+    });
+  */
+ 
+  return config;
+
 }
-
-module.exports = serverConfig;
-
-

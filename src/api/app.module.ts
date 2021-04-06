@@ -5,9 +5,9 @@ import { RouterModule } from 'nest-router';
 import { routes } from './routes/routes';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NunjucksModule } from 'nest-nunjucks';
-import { ApiModule } from './api/api.module';
-import { User } from './api/user/user.entity';
-import { RefreshToken } from './api/user/refresh-token.entity';
+import { ApiModule } from './modules/api.module';
+import { User } from './modules/user/user.entity';
+import { RefreshToken } from './modules/user/refresh-token.entity';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -28,9 +28,9 @@ import { ConfigModule } from '@nestjs/config';
     }), 
     NunjucksModule.forRoot({
       paths: [
-          "src/backend/templates/",
-          "src/backend/templates/partials/",
-          "src/backend/templates/layouts/",
+          "src/api/templates/",
+          "src/api/templates/partials/",
+          "src/api/templates/layouts/",
       ],
       options: {
         autoescape: true,

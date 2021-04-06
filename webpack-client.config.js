@@ -11,13 +11,13 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 
 Encore
     // directory where compiled assets will be stored
-    .setOutputPath('dist/frontend')
+    .setOutputPath('dist/client')
     // public path used by the web server to access the output path
     // Dev public path used by the web server to access the output path
-    .setPublicPath('http://localhost:3000/frontend')
+    .setPublicPath('http://localhost:3000/client')
     
     // only needed for CDN's or sub-directory deploy
-    .setManifestKeyPrefix('frontend')
+    .setManifestKeyPrefix('client')
 
     /*
      * ENTRY CONFIG
@@ -28,13 +28,13 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-/*  
+    /*  
      .addPlugin(new CopyWebpackPlugin({
         patterns: [
             //{ from: './resources/images', to: 'images' },
         ]
     }))
-*/
+    */
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     //.splitEntryChunks()
 
@@ -63,8 +63,8 @@ Encore
         config.corejs = 3;
     })   
 
-    .addEntry('public',[
-        './src/frontend/main.ts',
+    .addEntry('main',[
+        './src/client/main.ts',
     ])                  
 
     // enables Sass/SCSS support

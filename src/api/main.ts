@@ -30,8 +30,7 @@ async function bootstrap() {
 
   swaggerSetup(app);
 
-  const assets = join(__dirname, '..', 'dist');
-  app.useStaticAssets(assets);
+  app.useStaticAssets(join(__dirname, '../client'));
 
   if (module.hot) {
     module.hot.accept();
