@@ -1,6 +1,6 @@
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 
-export const swaggerSetup = (app) =>{
+export const setup = (app) =>{
     const options = new DocumentBuilder()
     .setTitle('My API')
     .setDescription('API description')

@@ -4,7 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
 import { JwtExceptionFilter } from './exceptions/jwt-exception.filter';
-import { swaggerSetup } from './swagger-setup';
+import { setup as swagger} from './swagger/setup';
 
 declare const module: any;
 
@@ -28,7 +28,7 @@ async function bootstrap() {
 
   //app.enableCors();
 
-  swaggerSetup(app);
+  swagger(app);
 
   app.useStaticAssets(join(__dirname, '../client'));
 
