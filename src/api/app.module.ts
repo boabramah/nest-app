@@ -7,7 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { NunjucksModule } from 'nest-nunjucks';
 import { ApiModule } from './modules/api.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import dbConfig from './config/database';
+import dbConfig from './config/database/config.mysql';
 
 @Module({
   imports: [
