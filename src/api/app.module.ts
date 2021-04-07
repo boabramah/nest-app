@@ -6,26 +6,20 @@ import { routes } from './routes/routes';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NunjucksModule } from 'nest-nunjucks';
 import { ApiModule } from './modules/api.module';
-import { User } from './modules/user/user.entity';
-import { RefreshToken } from './modules/user/refresh-token.entity';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import dbConfig from './config/database';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      load: [dbConfig],
       isGlobal: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'nest_db',
-      entities: [User, RefreshToken],
-      synchronize: true,
-      keepConnectionAlive: true,
-    }), 
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => config.get('database'),
+      inject: [ConfigService],
+    }),   
     NunjucksModule.forRoot({
       paths: [
           "src/api/templates/",
