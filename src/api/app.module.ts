@@ -8,6 +8,7 @@ import { NunjucksModule } from 'nest-nunjucks';
 import { ApiModule } from './modules/api.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import dbConfig from './config/database/config.mysql';
+//import { ConnectionOptions } from "typeorm";
 
 @Module({
   imports: [
